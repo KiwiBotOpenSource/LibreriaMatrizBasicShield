@@ -1,0 +1,7 @@
+  Matriz KEYWORD1
+  matriz KEYWORD1  imprimirPixel KEYWORD1
+  imprimirNumero KEYWORD1
+  imprimirLinea KEYWORD1
+  nuevoPunto KEYWORD1
+  borrarPunto KEYWORD1
+  imprimirMatriz KEYWORD1
