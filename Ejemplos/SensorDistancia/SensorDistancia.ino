@@ -56,7 +56,7 @@ void loop(){
   if(a == HIGH){
     for(int x; x<128; x++){
      int x1=x/16;
-      matriz.imprimirLinea(3, 1, 3, x1);
+      matriz.printLine(3, 1, 3, x1);
     }
     for(int i=0; i<5; i++){
       digitalWrite(buzzerPin, HIGH);
@@ -69,13 +69,13 @@ void loop(){
     digitalWrite(trigPin, HIGH); 
     delayMicroseconds(10);
     tiempo=pulseIn(echoPin, HIGH);
-    numero = int(0.017*tiempo); //V=e/t -->e=V*t
+    numero = int(0.017*tiempo);
     a=LOW;
   }
   while(estadoBoton==HIGH){
     estadoBoton=digitalRead(botonPin);
   }
-  matriz.imprimirNumero(numero);
+  matriz.printNumber(numero);
 }
 
 

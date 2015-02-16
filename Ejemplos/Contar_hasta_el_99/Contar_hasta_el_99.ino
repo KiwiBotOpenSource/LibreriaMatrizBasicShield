@@ -7,6 +7,6 @@ void setup(){
 }
 void loop(){
   for(numero=0; numero<100; numero++){
-    matriz.imprimirNumero(numero, 1);  //imprimimos un nomero durante 1 segundo
+    matriz.printNumber(numero, 1);  //imprimimos un nomero durante 1 segundo
   }
 }

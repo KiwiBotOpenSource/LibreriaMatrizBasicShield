@@ -81,29 +81,66 @@ pinMode(pinDatos, OUTPUT);
 //#Al aumentar la j, la columna seleccionada sera la de la derecha a la anterior 
 //#Ej: si j=1 la columna seleccionada será la de la derecha
 //########################################################
-void Matriz::imprimirPixel(byte i0, byte j0){
+void Matriz::printPixel(byte i0, byte j0){
   byte i=i0;
   byte j=j0;
-  enviarDatos(i1[i-1], j1[j-1]); //Imprimimos en la pantalla la fila y columna necesaria para encender el pixel correspondiente
+  sendData(i1[i-1], j1[j-1]); //Imprimimos en la pantalla la fila y columna necesaria para encender el pixel correspondiente
 }
 
+
+//########################################################
+//#Funcion para imprimir pixel en (i ,j) durante un tiempo determinado en segundos
+//#      @i selecciona la fila. 
+//#Al aumentar la i, la fila seleccionada sera la de abajo a la anterior 
+//#Ej: si i=1 la fila seleccionada será la de arriba
+//#      @j selecciona la columna. 
+//#Al aumentar la j, la columna seleccionada sera la de la derecha a la anterior 
+//#Ej: si j=1 la columna seleccionada será la de la derecha
+//########################################################
+void Matriz::printPixel(byte i0, byte j0, int tiempo){
+  tiempo=(tiempo*2000)/0.554;
+  byte i=i0;
+  byte j=j0;
+  for(int t=0; t<tiempo; t++){
+    sendData(i1[i-1], j1[j-1]); //Imprimimos en la pantalla la fila y columna necesaria para encender el pixel correspondiente
+  }
+}
+
+
+//########################################################
+//#Funcion para imprimir pixel en (i ,j) durante un tiempo determinado en segundos y milisegundos
+//#      @i selecciona la fila. 
+//#Al aumentar la i, la fila seleccionada sera la de abajo a la anterior 
+//#Ej: si i=1 la fila seleccionada será la de arriba
+//#      @j selecciona la columna. 
+//#Al aumentar la j, la columna seleccionada sera la de la derecha a la anterior 
+//#Ej: si j=1 la columna seleccionada será la de la derecha
+//########################################################
+void Matriz::printPixel(byte i0, byte j0, double tiempo){
+  tiempo=(tiempo*2000)/0.554;
+  byte i=i0;
+  byte j=j0;
+  for(int t=0; t<tiempo; t++){
+    sendData(i1[i-1], j1[j-1]); //Imprimimos en la pantalla la fila y columna necesaria para encender el pixel correspondiente
+  }
+}
 
 
 //########################################################
 //#Funcion para imprimir un numero
 //#Imprime un numero desde el 0 hasta el 99 durante un instante
 //########################################################
-void Matriz::imprimirNumero(byte valor){
+void Matriz::printNumber(byte valor){
   index=valor%10; //Extraemos la unidad del numero
   byte i; //byte auxiliar para contar en que fila estamos
   for(i = 0; i < 5; i++){
-    enviarDatos(i1[i], unidad[(i+5*index)]); //Imprimimos en la pantalla la fila y la/las columnas indicadas
+    sendData(i1[i], unidad[(i+5*index)]); //Imprimimos en la pantalla la fila y la/las columnas indicadas
   }
   index=valor/10; //Extraemos la decena del numero
   for(i = 0; i < 5; i++){
-    enviarDatos(i1[i], decena[(i+5*index)]); //Imprimimos en la pantalla la fila y la/las columnas indicadas
+    sendData(i1[i], decena[(i+5*index)]); //Imprimimos en la pantalla la fila y la/las columnas indicadas
   }
-  limpiarMatriz();
+  clean();
 }
 
 
@@ -112,21 +149,21 @@ void Matriz::imprimirNumero(byte valor){
 //#Imprime un numero desde el 0 hasta el 99
 //# durante el tiempo indicado en segundos
 //########################################################
-void Matriz::imprimirNumero(byte valor, int tiempo){
-  float time=(tiempo*2000)/5.563;
+void Matriz::printNumber(byte valor, int tiempo){
+  tiempo=(tiempo*2000)/5.563;
   //Repetimos esta operacion un numero definido de veces para crear una duracion
-  for(int t=0; t<time; t++){
+  for(int t=0; t<tiempo; t++){
     index=valor%10; //Extraemos la unidad del numero
     byte i; //byte auxiliar para contar en que fila estamos
     for(i = 0; i < 5; i++){
-      enviarDatos(i1[i], unidad[(i+5*index)]); //Imprimimos en la pantalla la fila y la/las columnas indicadas
+      sendData(i1[i], unidad[(i+5*index)]); //Imprimimos en la pantalla la fila y la/las columnas indicadas
     }
     index=valor/10; //Extraemos la decena del numero
     for(i = 0; i < 5; i++){
-      enviarDatos(i1[i], decena[(i+5*index)]); //Imprimimos en la pantalla la fila y la/las columnas indicadas
+      sendData(i1[i], decena[(i+5*index)]); //Imprimimos en la pantalla la fila y la/las columnas indicadas
     }
   }
-  limpiarMatriz();
+  clean();
 }
 
 
@@ -136,21 +173,21 @@ void Matriz::imprimirNumero(byte valor, int tiempo){
 //# durante el tiempo indicado en segundos
 //#	@es posible la duracion 1.5 segundos
 //########################################################
-void Matriz::imprimirNumero(byte valor, double tiempo){
+void Matriz::printNumber(byte valor, double tiempo){
   tiempo=(tiempo*2000)/5.563;
   //Repetimos esta operacion un numero definido de veces para crear una duracion
   for(int t=0; t<tiempo; t++){
     index=valor%10; //Extraemos la unidad del numero
     byte i; //byte auxiliar para contar en que fila estamos
     for(i = 0; i < 5; i++){
-      enviarDatos(i1[i], unidad[(i+5*index)]); //Imprimimos en la pantalla la fila y la/las columnas indicadas
+      sendData(i1[i], unidad[(i+5*index)]); //Imprimimos en la pantalla la fila y la/las columnas indicadas
     }
     index=valor/10; //Extraemos la decena del numero
     for(i = 0; i < 5; i++){
-      enviarDatos(i1[i], decena[(i+5*index)]); //Imprimimos en la pantalla la fila y la/las columnas indicadas
+      sendData(i1[i], decena[(i+5*index)]); //Imprimimos en la pantalla la fila y la/las columnas indicadas
     }
   }
-  limpiarMatriz();
+  clean();
 }
 
 
@@ -158,7 +195,7 @@ void Matriz::imprimirNumero(byte valor, double tiempo){
 //#Funcion para imprmir una linea
 //#desde Iinicio, Jinicio hasta Ifinal, Ifinal
 //########################################################
-void Matriz::imprimirLinea(byte i2, byte j2, byte i3, byte j3){
+void Matriz::printLine(byte i2, byte j2, byte i3, byte j3){
   byte i;
   byte j;
   byte iIni=i2;
@@ -168,7 +205,7 @@ void Matriz::imprimirLinea(byte i2, byte j2, byte i3, byte j3){
   for(j=1; j<8; j++){ //recorremos todas las columnas
     if(j>=jIni && j<=jFin){ //restringimos el recorrido al dominio de la linea
       i=(((iFin-iIni)*(j-jIni))/(jFin-jIni))+iIni; //Ecuacion de una recta en forma vectorial donde hemos despejado i
-      imprimirPixel(i, j); //Imprimimos pixel a pixel la linea
+      printPixel(i, j); //Imprimimos pixel a pixel la linea
     }
   }
 }
@@ -180,8 +217,8 @@ void Matriz::imprimirLinea(byte i2, byte j2, byte i3, byte j3){
 //#pero mantendra guardados los puntos añadidos a traves 
 //#de la funcion nuevoPunto(i, j)
 //########################################################
-void Matriz::limpiarMatriz(){
-  enviarDatos(B1111111, 0);  //Ponemos todas las filas a 1 y todas las columnas a 0 para que no se encienda ningun led
+void Matriz::clean(){
+  sendData(B1111111, 0);  //Ponemos todas las filas a 1 y todas las columnas a 0 para que no se encienda ningun led
 }
 
 
@@ -189,7 +226,7 @@ void Matriz::limpiarMatriz(){
 //#Funcion para añadir un nuevo punto que se encendera en la matriz
 //#una vez llamado al metodo imprimirMatriz()
 //########################################################
-void Matriz::nuevoPunto(byte i, byte j){
+void Matriz::newPixel(byte i, byte j){
   estadoMatriz[7*(i-1)+(j-1)]=1; //Almacenamos un nuevo punto en un array
 }
 
@@ -198,7 +235,7 @@ void Matriz::nuevoPunto(byte i, byte j){
 //#Funcion para eliminar un nuevo punto de los que se encienden en la matriz
 //#una vez llamado al metodo imprimirMatriz()
 //########################################################
-void Matriz::borrarPunto(byte i, byte j){
+void Matriz::deletePixel(byte i, byte j){
   estadoMatriz[7*(i-1)+(j-1)]=0;  //Eliminamos un punto existente del array
 }
 
@@ -206,7 +243,7 @@ void Matriz::borrarPunto(byte i, byte j){
 //########################################################
 //#Funcion para encender los puntos anteriormente definidos
 //########################################################
-void Matriz::imprimirMatriz(){
+void Matriz::print(){
   //Pasamos la informacion del array a binario
   for(byte i=0; i<5; i++){
     for(byte j=0; j<7; j++){
@@ -215,7 +252,7 @@ void Matriz::imprimirMatriz(){
   }
   //Recorremos el array de los binarios imprimiendo la imformacion el la matriz
   for(byte i = 0; i < 5; i++){
-    enviarDatos(i1[i], estadoMatrizBinario[i]);
+    sendData(i1[i], estadoMatrizBinario[i]);
   }
 }
 
@@ -224,7 +261,7 @@ void Matriz::imprimirMatriz(){
 //#Funcion para encender los puntos anteriormente definidos
 //#durante un periodo de tiempo definido en segundos
 //########################################################
-void Matriz::imprimirMatriz(int tiempo){
+void Matriz::print(int tiempo){
   float time=(tiempo*1000)/1.407;
   //Repetimos esta operacion un numero definido de veces para crear una duracion
   for(int t=0; t<time; t++){
@@ -236,7 +273,7 @@ void Matriz::imprimirMatriz(int tiempo){
     }
     //Recorremos el array de los binarios imprimiendo la imformacion el la matriz
     for(byte i = 0; i < 5; i++){
-      enviarDatos(i1[i], estadoMatrizBinario[i]);
+      sendData(i1[i], estadoMatrizBinario[i]);
     }
   }
 }
@@ -247,7 +284,7 @@ void Matriz::imprimirMatriz(int tiempo){
 //#durante un periodo de tiempo definido en segundos
 //#	@Es posible utilizar la duracion 1.5 segundos
 //########################################################
-void Matriz::imprimirMatriz(double tiempo){
+void Matriz::print(double tiempo){
   tiempo=(tiempo*1000)/1.407;
   //Repetimos esta operacion un numero definido de veces para crear una duracion
   for(int t=0; t<tiempo; t++){
@@ -259,7 +296,7 @@ void Matriz::imprimirMatriz(double tiempo){
     }
     //Recorremos el array de los binarios imprimiendo la imformacion el la matriz
     for(byte i = 0; i < 5; i++){
-      enviarDatos(i1[i], estadoMatrizBinario[i]);
+      sendData(i1[i], estadoMatrizBinario[i]);
     }
   }
 }
@@ -277,8 +314,8 @@ void Matriz::fadeOut(int tiempo){
    t=i/100;
     //Repetimos esta operacion un numero definido de veces para crear una duracion
     for(int j=0; j<t/5; j++){
-      imprimirMatriz();
-      limpiarMatriz();
+      print();
+      clean();
       delay(t*t);  //El delay entre el encendido y el apagado va aumentando
     }
   }
@@ -297,8 +334,8 @@ void Matriz::fadeIn(int tiempo){
     t=i/100;  
   //Repetimos esta operacion un numero definido de veces para crear una duracion
     for(int j=0; j<t/5; j++){
-      imprimirMatriz();
-      limpiarMatriz();
+      print();
+      clean();
       delay(t*t);  //El delay entre el encendido y el apagado va disminuyendo
     }
   }
@@ -309,7 +346,7 @@ void Matriz::fadeIn(int tiempo){
 //#Funcion para mandar valores a la placa
 //#a traves del registro de desplazamiento
 //########################################################
-void Matriz::enviarDatos(byte fila, byte columna){
+void Matriz::sendData(byte fila, byte columna){
   //Como usamos un regirtro de desplazamiento utilizamos la funcion shiftOut para enviarle los datos enviando primero el bit mas significativo
   digitalWrite(pinLatch, LOW);
   shiftOut(pinDatos, pinReloj, MSBFIRST, fila);

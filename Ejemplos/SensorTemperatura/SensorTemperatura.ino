@@ -21,5 +21,5 @@ void loop(){
     temperaturaValue= analogRead(temperaturaPin);
     temperatura=(temperaturaValue*5*100)/1024;
   }
-  matriz.imprimirNumero(temperatura); //Imprimir Temperatura
+  matriz.printNumber(temperatura); //Imprimir Temperatura
 }
