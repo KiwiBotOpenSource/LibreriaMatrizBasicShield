@@ -19,12 +19,12 @@ void printNumber(byte valor); //Funcion para imprimir un numero
 void printNumber(byte valor, int tiempo); //Funcion para imprimir un numero durante un tiempo determinado
 void printNumber(byte valor, double tiempo); //Funcion para imprimir un numero durante un tiempo determinado siendo posible la duracion 1.5 segundos
 void printLine(byte i2, byte j2, byte i3, byte j3); //Funcion para imprmir una linea desde Iinicio, Jinicio hasta Ifinal, Ifinal
-void clean(); //Funcion para apagar todos los leds
+void cleanMatrix(); //Funcion para apagar todos los leds
 void newPixel(byte i, byte j); //Funcion para añadir un nuevo punto que se encendera en la matriz
 void deletePixel(byte i, byte j); //Funcion para eliminar un nuevo punto de los que se encienden en la matriz
-void print(); //Funcion para encender los puntos anteriormente definidos
-void print(int tiempo); //Funcion para encender los puntos anteriormente definidos durante un tiempo definido
-void print(double tiempo); //Funcion para encender los puntos anteriormente definidos durante un tiempo definido siendo posible la duracion 1.5 segundos
+void printMatrix(); //Funcion para encender los puntos anteriormente definidos
+void printMatrix(int tiempo); //Funcion para encender los puntos anteriormente definidos durante un tiempo definido
+void printMatrix(double tiempo); //Funcion para encender los puntos anteriormente definidos durante un tiempo definido siendo posible la duracion 1.5 segundos
 void fadeOut(int tiempo); //Funcion para apagar progresivamente los puntos anteriormente añadidos
 void fadeIn(int tiempo); //Funcion para encender progresivamente los puntos anteriormente añadidos
 

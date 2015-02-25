@@ -140,7 +140,7 @@ void Matriz::printNumber(byte valor){
   for(i = 0; i < 5; i++){
     sendData(i1[i], decena[(i+5*index)]); //Imprimimos en la pantalla la fila y la/las columnas indicadas
   }
-  clean();
+  cleanMatrix();
 }
 
 
@@ -163,7 +163,7 @@ void Matriz::printNumber(byte valor, int tiempo){
       sendData(i1[i], decena[(i+5*index)]); //Imprimimos en la pantalla la fila y la/las columnas indicadas
     }
   }
-  clean();
+  cleanMatrix();
 }
 
 
@@ -187,7 +187,7 @@ void Matriz::printNumber(byte valor, double tiempo){
       sendData(i1[i], decena[(i+5*index)]); //Imprimimos en la pantalla la fila y la/las columnas indicadas
     }
   }
-  clean();
+  cleanMatrix();
 }
 
 
@@ -217,7 +217,7 @@ void Matriz::printLine(byte i2, byte j2, byte i3, byte j3){
 //#pero mantendra guardados los puntos añadidos a traves 
 //#de la funcion nuevoPunto(i, j)
 //########################################################
-void Matriz::clean(){
+void Matriz::cleanMatrix(){
   sendData(B1111111, 0);  //Ponemos todas las filas a 1 y todas las columnas a 0 para que no se encienda ningun led
 }
 
@@ -243,7 +243,7 @@ void Matriz::deletePixel(byte i, byte j){
 //########################################################
 //#Funcion para encender los puntos anteriormente definidos
 //########################################################
-void Matriz::print(){
+void Matriz::printMatrix(){
   //Pasamos la informacion del array a binario
   for(byte i=0; i<5; i++){
     for(byte j=0; j<7; j++){
@@ -261,7 +261,7 @@ void Matriz::print(){
 //#Funcion para encender los puntos anteriormente definidos
 //#durante un periodo de tiempo definido en segundos
 //########################################################
-void Matriz::print(int tiempo){
+void Matriz::printMatrix(int tiempo){
   float time=(tiempo*1000)/1.407;
   //Repetimos esta operacion un numero definido de veces para crear una duracion
   for(int t=0; t<time; t++){
@@ -284,7 +284,7 @@ void Matriz::print(int tiempo){
 //#durante un periodo de tiempo definido en segundos
 //#	@Es posible utilizar la duracion 1.5 segundos
 //########################################################
-void Matriz::print(double tiempo){
+void Matriz::printMatrix(double tiempo){
   tiempo=(tiempo*1000)/1.407;
   //Repetimos esta operacion un numero definido de veces para crear una duracion
   for(int t=0; t<tiempo; t++){
@@ -314,8 +314,8 @@ void Matriz::fadeOut(int tiempo){
    t=i/100;
     //Repetimos esta operacion un numero definido de veces para crear una duracion
     for(int j=0; j<t/5; j++){
-      print();
-      clean();
+      printMatrix();
+      cleanMatrix();
       delay(t*t);  //El delay entre el encendido y el apagado va aumentando
     }
   }
@@ -334,8 +334,8 @@ void Matriz::fadeIn(int tiempo){
     t=i/100;  
   //Repetimos esta operacion un numero definido de veces para crear una duracion
     for(int j=0; j<t/5; j++){
-      print();
-      clean();
+      printMatrix();
+      cleanMatrix();
       delay(t*t);  //El delay entre el encendido y el apagado va disminuyendo
     }
   }
